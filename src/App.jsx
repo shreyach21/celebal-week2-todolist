@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoForm from "./components/TodoForm";
-import Todos from "./components/Todos";
-import Features from "./components/Features";
 import { TodoContextProvider } from "./context";
+import TodoFeatures from "./components/TodoFeatures";
 const App = () => {
   const [todos, setTodos] = useState([]);
   const addTodo = (todo) => {
@@ -20,12 +19,14 @@ const App = () => {
     setTodos((prevTodos) =>
       prevTodos.map((prevTodo) =>
         prevTodo.id === id
-          ? { ...prevTodo, completed: !prevTodo.completed }
+          ? {
+              ...prevTodo,
+              completed: !prevTodo.completed,
+            }
           : prevTodo
       )
     );
   };
-  const filterTodos = () => {};
   const sortTodos = () => {
     if (todos) {
       const sortedTodos = todos.sort((a, b) => {
@@ -55,7 +56,6 @@ const App = () => {
         toggleComplete,
         todos,
         sortTodos,
-        filterTodos,
       }}
     >
       <div className="min-h-screen w-full py-10 bg-blue-100">
@@ -64,9 +64,7 @@ const App = () => {
             Personal todo app
           </h1>
           <TodoForm />
-          <Features />
-          <div className=" h-[3px] bg-slate-200 mb-8 mx-auto w-[90%] mt-6"></div>
-          <Todos />
+          <TodoFeatures />
         </div>
       </div>
     </TodoContextProvider>

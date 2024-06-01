@@ -4,7 +4,6 @@ import { useTodo } from "../context";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// // toast.configure();
 
 const TodoForm = () => {
   const [todoString, setTodoString] = useState("");
@@ -14,7 +13,7 @@ const TodoForm = () => {
 
   const validateTodo = () => {
     let errorMsg = /^.{1,100}$/.test(todoString)
-      ? /^[a-zA-Z0-9]+$/.test(todoString)
+      ? /^[a-zA-Z0-9 ,]*$/.test(todoString)
         ? ""
         : "Todo must be alphanumeric only!"
       : "Todo must be a maximum of 100 characters";

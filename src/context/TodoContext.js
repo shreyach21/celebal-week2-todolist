@@ -13,7 +13,6 @@ export const TodoContext = createContext({
   removeTodo: (id) => {},
   toggleComplete: (id) => {},
   sortTodos: () => {},
-  filterTodos: () => {},
 });
 
 export const useTodo = () => {
