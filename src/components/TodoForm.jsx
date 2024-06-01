@@ -8,29 +8,29 @@ import "react-toastify/dist/ReactToastify.css";
 const TodoForm = () => {
   const [todoString, setTodoString] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const { addTodo } = useTodo();
 
   const validateTodo = () => {
     let errorMsg = /^.{1,100}$/.test(todoString)
       ? /^[a-zA-Z0-9 ,]*$/.test(todoString)
         ? ""
-        : "Todo must be alphanumeric only!"
+        : "Todo must be alphanumeric only! no special character allowed"
       : "Todo must be a maximum of 100 characters";
     if (errorMsg) {
-      setError(errorMsg);
       setIsValid(false);
     }
-    return errorMsg.length === 0;
+    return errorMsg;
   };
   const addTodoHandler = (e) => {
     e.preventDefault();
     // if (todoString.trim().length === 0) return;
     if (!todoString) return;
 
-    const result = validateTodo();
-    if (result) {
+    const errormsg = validateTodo();
+    if (!errormsg) {
       setIsValid(true);
+      // setError("");
       toast.success("Todo added successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -38,10 +38,9 @@ const TodoForm = () => {
       addTodo({ todo: todoString, compleled: false });
     } else {
       setIsValid(false);
-      toast.error(error, { position: "top-right", autoClose: 3000 });
+      // setError(errormsg);
+      toast.error(errormsg, { position: "top-right", autoClose: 3000 });
     }
-    console.log("error:", error);
-    console.log("valid:", isValid);
     setTodoString("");
   };
 

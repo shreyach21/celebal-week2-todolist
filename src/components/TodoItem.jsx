@@ -15,8 +15,8 @@ const TodoItem = ({ todo, completed, id }) => {
 
   return (
     <div
-      className={`w-full flex justify-between items-center rounded-md shadow-md  mb-4 bg-white  ${
-        completed ? " py-1 bg-blue-100" : "bg-white py-2"
+      className={`w-full flex justify-between items-center rounded-md shadow-md  mb-4  ${
+        completed ? " py-1 bg-blue-100 " : "bg-white py-2"
       }`}
     >
       <div className="pl-2 flex items-center w-[90%]">
@@ -41,7 +41,7 @@ const TodoItem = ({ todo, completed, id }) => {
           value={text}
           className={`text-md ml-4  w-full outline-none border rounded-lg bg-transparent ${
             isEditable ? "border border-black/10 px-2" : "border-transparent"
-          } ${completed ? "line-through " : ""}
+          } ${completed ? "line-through" : "bg-transparent"}
           }`}
           onChange={(e) => setText(e.target.value)}
           readOnly={!isEditable}
