@@ -1,19 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { useTodo } from "../context";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// // toast.configure();
 
 const TodoForm = () => {
   const [todoString, setTodoString] = useState("");
-  const [todos, setTodos] = useState([]);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTodos((prevdata) => [...prevdata, todoString]);
+  const [isValid, setIsValid] = useState(true);
+  const [error, setError] = useState("");
+  const { addTodo } = useTodo();
+
+  const validateTodo = () => {
+    let errorMsg = /^.{1,100}$/.test(todoString)
+      ? /^[a-zA-Z0-9]+$/.test(todoString)
+        ? ""
+        : "Todo must be alphanumeric only!"
+      : "Todo must be a maximum of 100 characters";
+    if (errorMsg) {
+      setError(errorMsg);
+      setIsValid(false);
+    }
+    return errorMsg.length === 0;
   };
-  const options = ["completed", "incomplete", "default"];
+  const addTodoHandler = (e) => {
+    e.preventDefault();
+    // if (todoString.trim().length === 0) return;
+    if (!todoString) return;
+
+    const result = validateTodo();
+    if (result) {
+      setIsValid(true);
+      toast.success("Todo added successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      addTodo({ todo: todoString, compleled: false });
+    } else {
+      setIsValid(false);
+      toast.error(error, { position: "top-right", autoClose: 3000 });
+    }
+    console.log("error:", error);
+    console.log("valid:", isValid);
+    setTodoString("");
+  };
+
   return (
     <div className="w-[90%] mx-auto">
       <form
         className="flex flex-col justify-center w-full"
-        onSubmit={handleSubmit}
+        onSubmit={addTodoHandler}
       >
         <div className="flex text-md w-full mb-6 gap-x-2">
           <input
@@ -31,6 +68,8 @@ const TodoForm = () => {
           </button>
         </div>
       </form>
+      {/* {error && <p className="text-md text-red-500 mb-2 px-2">{error}</p>} */}
+      <ToastContainer />
     </div>
   );
 };
