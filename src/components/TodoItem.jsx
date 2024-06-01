@@ -16,7 +16,7 @@ const TodoItem = ({ todo, completed, id }) => {
   return (
     <div
       className={`w-full flex justify-between items-center rounded-md shadow-md  mb-4 bg-white  ${
-        completed ? "bg-green-100  py-1 bg-blue-100" : "bg-white py-2"
+        completed ? " py-1 bg-blue-100" : "bg-white py-2"
       }`}
     >
       <div className="pl-2 flex items-center w-[90%]">

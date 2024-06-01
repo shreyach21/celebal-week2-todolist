@@ -59,7 +59,7 @@ const App = () => {
       }}
     >
       <div className="min-h-screen w-full py-10 bg-blue-100">
-        <div className="max-w-4xl mx-auto py-4 rounded-md bg-slate-100 shadow-md text-slate-600 shadow-black/20 border-t-2 border-white/35 bg-white/55 ">
+        <div className="lg:max-w-4xl mx-auto py-4 rounded-md bg-slate-100 shadow-md text-slate-600 shadow-black/20 border-t-2 border-white/35 bg-white/55 ">
           <h1 className="uppercase font-bold text-center py-6 text-2xl">
             Personal todo app
           </h1>

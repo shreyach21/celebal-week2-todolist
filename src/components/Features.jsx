@@ -69,7 +69,7 @@ const Features = ({ filterOption, setFilterOption, setSortOption }) => {
                   : "mark all complete"
               );
             }}
-            className="bg-gradient-to-t from-blue-700 to-blue-500 hover:outline outline-blue-300 duration-200 text-white cursor-pointer px-5 py-2 ml-4 rounded-md shadow-md capitalize"
+            className="bg-gradient-to-t from-blue-700 to-blue-500 hover:outline outline-blue-300 duration-200 text-white cursor-pointer px-5 py-2 ml-4 rounded-md shadow-md capitalize "
           >
             {text}
           </button>
