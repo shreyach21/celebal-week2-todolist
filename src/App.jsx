@@ -27,18 +27,6 @@ const App = () => {
       )
     );
   };
-  const sortTodos = () => {
-    if (todos) {
-      const sortedTodos = todos.sort((a, b) => {
-        const t1 = a.todo ? a.todo : "";
-        const t2 = b.todo ? b.todo : "";
-        if (t1 < t2) return -1;
-        if (t1 > t2) return 1;
-        return 0;
-      });
-      setTodos(sortedTodos);
-    }
-  };
   useEffect(() => {
     const lstodos = JSON.parse(localStorage.getItem("todos"));
     if (lstodos && lstodos.length !== 0) setTodos(lstodos);
@@ -55,7 +43,6 @@ const App = () => {
         removeTodo,
         toggleComplete,
         todos,
-        sortTodos,
       }}
     >
       <div className="min-h-screen w-full py-10 bg-blue-100">
