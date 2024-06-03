@@ -8,7 +8,7 @@ import { useTodo } from "../context";
 
 const TodoItem = ({ todo, completed, id }) => {
   const [text, setText] = useState(todo);
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
 
   const { updateTodo, removeTodo, toggleComplete } = useTodo();
@@ -31,7 +31,7 @@ const TodoItem = ({ todo, completed, id }) => {
           onClick={() => {
             // setIsChecked((prev) => !prev);
             toggleComplete(id);
-            setIsEditable(false);
+            // setIsEditable(false);
           }}
         >
           {completed ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}
@@ -41,7 +41,7 @@ const TodoItem = ({ todo, completed, id }) => {
           value={text}
           className={`text-md ml-4  w-full outline-none border rounded-lg bg-transparent ${
             isEditable ? "border border-black/10 px-2" : "border-transparent"
-          } ${completed ? "line-through" : "bg-transparent"}
+          } ${completed ? "line-through" : ""}
           }`}
           onChange={(e) => setText(e.target.value)}
           readOnly={!isEditable}
@@ -57,13 +57,13 @@ const TodoItem = ({ todo, completed, id }) => {
           <MdEdit
             className={completed ? "text-gray-400" : "text-black"}
             onClick={() => {
-              if (!completed) setIsEditable((prev) => !prev);
+              if (!completed) setIsEditable(true);
             }}
           />
         ) : (
           <FaSave
             onClick={() => {
-              if (!completed) setIsEditable((prev) => !prev);
+              setIsEditable(false);
               updateTodo(id, { todo: text, id, completed });
             }}
           />

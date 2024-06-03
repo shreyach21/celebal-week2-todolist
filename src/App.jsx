@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoForm from "./components/TodoForm";
 import { TodoContextProvider } from "./context";
-import TodoFeatures from "./components/TodoFeatures";
+import Todos from "./components/Todos";
 const App = () => {
   const [todos, setTodos] = useState([]);
   const addTodo = (todo) => {
@@ -51,7 +51,7 @@ const App = () => {
             Personal todo app
           </h1>
           <TodoForm />
-          <TodoFeatures />
+          <Todos />
         </div>
       </div>
     </TodoContextProvider>

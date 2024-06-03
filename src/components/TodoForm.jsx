@@ -7,19 +7,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 const TodoForm = () => {
   const [todoString, setTodoString] = useState("");
-  const [isValid, setIsValid] = useState(true);
-  // const [error, setError] = useState("");
+
   const { addTodo } = useTodo();
 
   const validateTodo = () => {
     let errorMsg = /^.{1,100}$/.test(todoString)
       ? /^[a-zA-Z0-9 ,]*$/.test(todoString)
         ? ""
-        : "Todo must be alphanumeric only! no special character allowed"
+        : "Todo must be alphanumeric only! no special character allowed!!"
       : "Todo must be a maximum of 100 characters";
-    if (errorMsg) {
-      setIsValid(false);
-    }
     return errorMsg;
   };
   const addTodoHandler = (e) => {
@@ -29,16 +25,12 @@ const TodoForm = () => {
 
     const errormsg = validateTodo();
     if (!errormsg) {
-      setIsValid(true);
-      // setError("");
       toast.success("Todo added successfully!", {
         position: "top-right",
         autoClose: 3000,
       });
       addTodo({ todo: todoString, compleled: false });
     } else {
-      setIsValid(false);
-      // setError(errormsg);
       toast.error(errormsg, { position: "top-right", autoClose: 3000 });
     }
     setTodoString("");

@@ -7,7 +7,7 @@ const Features = ({ filterOption, setFilterOption, setSortOption }) => {
   const [text, setText] = useState("mark all complete");
   const { toggleComplete, todos } = useTodo();
 
-  const markAllComplete = () => {
+  const changeCompleteStatus = () => {
     if (todos) {
       if (text === "mark all complete") {
         todos.map((todo) => {
@@ -23,7 +23,7 @@ const Features = ({ filterOption, setFilterOption, setSortOption }) => {
   };
 
   return (
-    <div className="flex mb-4 justify-between w-[90%] mx-auto">
+    <div className=" mb-4 w-full">
       <div className="flex justify-between w-full">
         <div className="">
           <select
@@ -62,7 +62,7 @@ const Features = ({ filterOption, setFilterOption, setSortOption }) => {
         {filterOption === "default" && (
           <button
             onClick={() => {
-              markAllComplete();
+              changeCompleteStatus();
               setText((prevText) =>
                 prevText === "mark all complete"
                   ? "mark all incomplete"
